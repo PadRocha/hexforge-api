@@ -6,7 +6,9 @@ use apihules::infra::{
     setup::{init_app_state, init_tracing},
     startup_error::StartupError,
 };
+use axum::serve;
 use std::sync::Arc;
+use tokio::net::TcpListener;
 use tracing::info;
 
 #[tokio::main]
@@ -28,7 +30,7 @@ async fn run() -> Result<(), StartupError> {
     let app_state = init_app_state(config.clone()).await?;
     let app = create_app(app_state)?;
 
-    let listener = tokio::net::TcpListener::bind(&config.server_address)
+    let listener = TcpListener::bind(&config.server_address)
         .await
         .map_err(|source| StartupError::BindServer {
             address: config.server_address.clone(),
@@ -41,7 +43,7 @@ async fn run() -> Result<(), StartupError> {
 
     info!("Backend listening at {}", local_addr);
 
-    axum::serve(listener, app)
+    serve(listener, app)
         .await
         .map_err(|source| StartupError::ServeHttp { source })?;
 

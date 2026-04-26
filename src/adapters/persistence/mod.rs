@@ -1,4 +1,7 @@
-//! Persistence adapters.
+//! Adaptadores de persistencia.
 //!
-//! Keep MongoDB collection access and repository implementations here. The
-//! application layer should depend on traits, not directly on driver details.
+//! # Responsabilidad
+//!
+//! Este módulo agrupa repositorios e integraciones con MongoDB. La capa de
+//! aplicación debería depender de traits definidos como puertos, mientras que
+//! las implementaciones concretas del driver viven aquí.

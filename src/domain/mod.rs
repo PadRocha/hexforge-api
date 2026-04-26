@@ -1,3 +1,7 @@
-//! Domain layer.
+//! Capa de dominio.
 //!
-//! Add entities, value objects, and domain services here as the API grows.
+//! # Responsabilidad
+//!
+//! Este módulo debe contener entidades, objetos de valor, eventos y reglas de
+//! dominio puras. Los tipos definidos aquí no deberían depender de Axum,
+//! MongoDB, variables de entorno ni otros detalles de infraestructura.

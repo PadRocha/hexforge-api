@@ -1,3 +1,8 @@
+//! Conversión de errores de aplicación a respuestas HTTP.
+//!
+//! Este módulo mantiene estable el contrato de error expuesto por el adaptador
+//! HTTP sin mezclar detalles de serialización dentro de la capa de aplicación.
+
 use crate::AppError;
 use axum::{
     Json,

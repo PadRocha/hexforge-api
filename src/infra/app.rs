@@ -7,6 +7,12 @@ use uuid::Uuid;
 
 use crate::{adapters, adapters::http::app_state::AppState, infra::startup_error::StartupError};
 
+/// Construye la aplicación Axum con rutas, CORS y tracing HTTP.
+///
+/// # Errors
+///
+/// Devuelve [`StartupError::InvalidCorsOrigin`] si `CORS_ALLOWED_ORIGIN` no se
+/// puede convertir en un header HTTP válido.
 pub fn create_app(app_state: AppState) -> Result<Router, StartupError> {
     let allowed_origin = app_state
         .config
